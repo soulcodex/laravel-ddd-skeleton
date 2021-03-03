@@ -173,6 +173,7 @@ return [
         \App\Infrastructure\Laravel\Providers\AuthServiceProvider::class,
         \App\Infrastructure\Laravel\Providers\EventServiceProvider::class,
         \App\Infrastructure\Laravel\Providers\RouteServiceProvider::class,
+        \App\Infrastructure\Laravel\Providers\RepositoryServiceProvider::class
 
     ],
 
