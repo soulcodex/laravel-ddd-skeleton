@@ -2,10 +2,11 @@
 
 namespace App\Domain\Entity\User;
 
+use App\Domain\Entity\RepositoryInterface;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
-interface UserRepositoryInterface
+interface UserRepositoryInterface extends RepositoryInterface
 {
     /**
      * @return Collection<int, User>

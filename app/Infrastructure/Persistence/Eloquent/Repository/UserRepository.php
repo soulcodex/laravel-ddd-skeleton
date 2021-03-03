@@ -6,6 +6,8 @@ use App\Domain\Entity\User\User;
 use App\Domain\Entity\User\UserRepositoryInterface;
 use App\Infrastructure\Persistence\Eloquent\AbstractRepository;
 use Exception;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class UserRepository extends AbstractRepository implements UserRepositoryInterface
@@ -86,5 +88,22 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
         $user = $this->findOrFail($id);
 
         $user->delete();
+    }
+
+    /**
+     * @param int $itemsPerPage
+     * @return LengthAwarePaginator
+     */
+    public function paginate(int $itemsPerPage): LengthAwarePaginator
+    {
+        return $this->getQueryBuilder()->paginate($itemsPerPage);
+    }
+
+    /**
+     * @return Builder
+     */
+    public function getQueryBuilder(): Builder
+    {
+        return $this->model->newQuery();
     }
 }
